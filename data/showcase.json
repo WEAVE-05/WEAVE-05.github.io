@@ -1,0 +1,217 @@
+{
+  "version": 1,
+  "tasks": {
+    "joint": [
+      {
+        "id": "joint-026",
+        "robot": "AgiBot G2",
+        "dataset": "Genie Sim 3.0",
+        "environment": "Simulation"
+      },
+      {
+        "id": "joint-079",
+        "robot": "AgileX dual-arm",
+        "dataset": "RoboMIND 2.0",
+        "environment": "Real-world"
+      },
+      {
+        "id": "joint-043",
+        "robot": "AgiBot G1",
+        "dataset": "AgiBot World (Beta)",
+        "environment": "Real-world"
+      },
+      {
+        "id": "joint-014",
+        "robot": "UR",
+        "dataset": "RoboMIND 2.0",
+        "environment": "Real-world"
+      },
+      {
+        "id": "joint-032",
+        "robot": "AgiBot G1",
+        "dataset": "AgiBot World (Beta)",
+        "environment": "Real-world"
+      },
+      {
+        "id": "joint-037",
+        "robot": "AgiBot G1",
+        "dataset": "AgiBot World (Beta)",
+        "environment": "Real-world"
+      },
+      {
+        "id": "joint-029",
+        "robot": "AgiBot G2",
+        "dataset": "Genie Sim 3.0",
+        "environment": "Simulation"
+      },
+      {
+        "id": "joint-066",
+        "robot": "AgiBot G1",
+        "dataset": "AgiBot World (Beta)",
+        "environment": "Real-world"
+      },
+      {
+        "id": "joint-057",
+        "robot": "AgiBot G1",
+        "dataset": "AgiBot World (Beta)",
+        "environment": "Real-world"
+      },
+      {
+        "id": "joint-064",
+        "robot": "AgiBot G1",
+        "dataset": "AgiBot World (Beta)",
+        "environment": "Real-world"
+      },
+      {
+        "id": "joint-073",
+        "robot": "AgiBot G1",
+        "dataset": "AgiBot World (Beta)",
+        "environment": "Real-world"
+      },
+      {
+        "id": "joint-025",
+        "robot": "AgiBot G2",
+        "dataset": "Genie Sim 3.0",
+        "environment": "Simulation"
+      }
+    ],
+    "newview": [
+      {
+        "id": "newview-004",
+        "robot": "AgiBot G2",
+        "dataset": "Genie Sim 3.0",
+        "environment": "Simulation"
+      },
+      {
+        "id": "newview-048",
+        "robot": "AgiBot G1",
+        "dataset": "AgiBot World (Beta)",
+        "environment": "Real-world"
+      },
+      {
+        "id": "newview-002",
+        "robot": "AgiBot G2",
+        "dataset": "Genie Sim 3.0",
+        "environment": "Simulation"
+      },
+      {
+        "id": "newview-018",
+        "robot": "AgiBot G2",
+        "dataset": "Genie Sim 3.0",
+        "environment": "Simulation"
+      },
+      {
+        "id": "newview-032",
+        "robot": "AgiBot G2",
+        "dataset": "Genie Sim 3.0",
+        "environment": "Simulation"
+      },
+      {
+        "id": "newview-040",
+        "robot": "AgiBot G2",
+        "dataset": "Genie Sim 3.0",
+        "environment": "Simulation"
+      },
+      {
+        "id": "newview-022",
+        "robot": "AgiBot G2",
+        "dataset": "Genie Sim 3.0",
+        "environment": "Simulation"
+      },
+      {
+        "id": "newview-012",
+        "robot": "AgiBot G2",
+        "dataset": "Genie Sim 3.0",
+        "environment": "Simulation"
+      },
+      {
+        "id": "newview-003",
+        "robot": "AgiBot G2",
+        "dataset": "Genie Sim 3.0",
+        "environment": "Simulation"
+      },
+      {
+        "id": "newview-047",
+        "robot": "AgiBot G2",
+        "dataset": "Genie Sim 3.0",
+        "environment": "Simulation"
+      }
+    ],
+    "c2v": [
+      {
+        "id": "c2v-015",
+        "robot": "AgileX Cobot Magic",
+        "dataset": "RoboCOIN",
+        "environment": "Real-world"
+      },
+      {
+        "id": "c2v-019",
+        "robot": "Genie-1",
+        "dataset": "InternData-A1",
+        "environment": "Real-world"
+      },
+      {
+        "id": "c2v-004",
+        "robot": "AgiBot G1",
+        "dataset": "AgiBot World (Beta)",
+        "environment": "Real-world"
+      },
+      {
+        "id": "c2v-009",
+        "robot": "Galaxea R1 Lite",
+        "dataset": "RoboCOIN",
+        "environment": "Real-world"
+      },
+      {
+        "id": "c2v-005",
+        "robot": "AgiBot G1",
+        "dataset": "AgiBot World (Beta)",
+        "environment": "Real-world"
+      },
+      {
+        "id": "c2v-013",
+        "robot": "AgileX Cobot Magic",
+        "dataset": "RoboCOIN",
+        "environment": "Real-world"
+      }
+    ],
+    "v2c": [
+      {
+        "id": "v2c-008",
+        "robot": "AgiBot G2",
+        "dataset": "Genie Sim 3.0",
+        "environment": "Simulation"
+      },
+      {
+        "id": "v2c-003",
+        "robot": "AgiBot G2",
+        "dataset": "Genie Sim 3.0",
+        "environment": "Simulation"
+      },
+      {
+        "id": "v2c-010",
+        "robot": "AgiBot G2",
+        "dataset": "Genie Sim 3.0",
+        "environment": "Simulation"
+      },
+      {
+        "id": "v2c-017",
+        "robot": "AgiBot G2",
+        "dataset": "Genie Sim 3.0",
+        "environment": "Simulation"
+      },
+      {
+        "id": "v2c-023",
+        "robot": "AgiBot G2",
+        "dataset": "Genie Sim 3.0",
+        "environment": "Simulation"
+      },
+      {
+        "id": "v2c-004",
+        "robot": "AgiBot G2",
+        "dataset": "Genie Sim 3.0",
+        "environment": "Simulation"
+      }
+    ]
+  }
+}

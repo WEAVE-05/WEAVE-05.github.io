@@ -1,0 +1,138 @@
+{
+  "joint-026": {
+    "en": "bimanual hold ball",
+    "zh": "用双手持球。"
+  },
+  "joint-079": {
+    "en": "A robotic arm removes a white plate from a dish rack and sets it flat on the table. It then picks up a red pomegranate and places it gently onto the center of the white plate.",
+    "zh": "机械臂从碗碟架上取下一个白色盘子，将其平放在桌上，随后拿起一个红色石榴，轻轻放到白盘中央。"
+  },
+  "joint-043": {
+    "en": "A dual-arm robot sits at a wooden table with a glass jug and brown cup. The left arm grasps the jug handle, tilts it to pour liquid into the cup, then places it back down smoothly.",
+    "zh": "双臂机器人位于一张木桌前，桌上放着玻璃水壶和棕色杯子。左臂握住水壶把手，倾斜水壶，将液体倒入杯中，然后平稳地放下水壶。"
+  },
+  "joint-014": {
+    "en": "The robot arm opens the rice cooker's lid, presses its off-white button, and closes the lid—executing a precise shutdown sequence on the white appliance with orange handle. The motion is smooth and focused, occurring on a tiled workbench marked with blue grid lines.",
+    "zh": "机械臂打开电饭煲盖子，按下米白色按钮，再合上盖子，准确完成这台带橙色把手的白色电饭煲的关机操作。整个动作平稳，操作集中在设备上；工作台铺有瓷砖，并标有蓝色网格线。"
+  },
+  "joint-032": {
+    "en": "A dual-arm robot inserts a red RAM module into a motherboard on a white table. The left arm grasps and aligns the module while the right arm assists in seating it securely.",
+    "zh": "双臂机器人将一根红色内存条插入白色桌面上的主板。左臂抓住内存条并对准插槽，右臂辅助将其安装到位。"
+  },
+  "joint-037": {
+    "en": "A dual-arm robot sits at a kitchen counter with a black microwave and various items nearby. The left arm picks up a brown cloth, wipes the top of the microwave, then places the cloth back on the counter.",
+    "zh": "双臂机器人位于厨房台面前，旁边有一台黑色微波炉和其他物品。左臂拿起棕色抹布，擦拭微波炉顶部，然后将抹布放回台面。"
+  },
+  "joint-029": {
+    "en": "grab bottle cart",
+    "zh": "抓取瓶子（推车场景）。"
+  },
+  "joint-066": {
+    "en": "A robotic arm retrieves two slices of toasted bread from a white toaster on a tiled kitchen counter. It places each slice sequentially onto a blue oval plate positioned to the left of the appliance.",
+    "zh": "机械臂从瓷砖厨房台面上的白色烤面包机中取出两片烤好的面包，依次放到烤面包机左侧的蓝色椭圆形盘子上。"
+  },
+  "joint-057": {
+    "en": "A dual-arm robot holds a brass gong steady with its left gripper while repeatedly striking it with a red-tasseled mallet in its right gripper. The motion is precise and rhythmic against an indoor exhibition backdrop.",
+    "zh": "双臂机器人用左侧夹爪稳稳握住一面黄铜锣，右侧夹爪持带红穗的槌子反复敲击。动作准确且富有节奏，背景为室内展览场景。"
+  },
+  "joint-064": {
+    "en": "A dual-arm robot stands before a stocked snack shelf with a wire cart below. The right arm reaches out, grasps a white Pom's Life bag, and deposits it into the cart while the left arm stays still.",
+    "zh": "双臂机器人站在摆满零食的货架前，下方有一辆金属网格推车。右臂伸出，抓起一袋白色包装的 Pom's Life 商品，放入推车；左臂保持不动。"
+  },
+  "joint-073": {
+    "en": "A dual-arm robot uses its right arm to pick up a green eraser from a table stand. It wipes blue writing off a whiteboard with smooth sweeping motions, then returns the eraser to its original spot.",
+    "zh": "双臂机器人用右臂从桌面支架上拿起绿色板擦，以平稳的擦拭动作擦去白板上的蓝色字迹，然后将板擦放回原处。"
+  },
+  "joint-025": {
+    "en": "arrange umbrellas",
+    "zh": "整理雨伞。"
+  },
+  "newview-004": {
+    "en": "open laptop lid",
+    "zh": "打开笔记本电脑的上盖。"
+  },
+  "newview-048": {
+    "en": "A dual-arm robot picks green snack packages from a store shelf and places them into a cardboard box on a shopping cart. Motions are smooth and deliberate, with accurate grasping and gentle release.",
+    "zh": "双臂机器人从商店货架上拿取绿色包装的零食，放入购物车上的纸箱。动作平稳且有条不紊，抓取准确，放置轻柔。"
+  },
+  "newview-002": {
+    "en": "heat food microwave",
+    "zh": "用微波炉加热食物。"
+  },
+  "newview-018": {
+    "en": "place object on box convoyor",
+    "zh": "在箱子输送带场景中放置物体。"
+  },
+  "newview-032": {
+    "en": "push drawer number",
+    "zh": "推动带编号的抽屉。"
+  },
+  "newview-040": {
+    "en": "sort fruit",
+    "zh": "将水果分类。"
+  },
+  "newview-022": {
+    "en": "hang tableware",
+    "zh": "挂起餐具。"
+  },
+  "newview-012": {
+    "en": "take book",
+    "zh": "取书。"
+  },
+  "newview-003": {
+    "en": "open door",
+    "zh": "开门。"
+  },
+  "newview-047": {
+    "en": "empty desktop bin",
+    "zh": "清空桌面垃圾桶。"
+  },
+  "c2v-015": {
+    "en": "edge video condition. A robotic arm reaches for a yellow banana on a white table, grasps it, lifts it, and places it into a woven wicker basket positioned on the left side of the table.",
+    "zh": "以边缘视频为条件。机械臂伸向白色桌面上的黄色香蕉，将其抓起并提起，放入桌面左侧的柳编篮子中。"
+  },
+  "c2v-019": {
+    "en": "segmentation video condition. A robotic arm picks up a black marker from a white cloth-covered table and places it into a green panda-shaped pen holder. The motion is smooth and deliberate, with no interaction involving the nearby dark bottle.",
+    "zh": "以分割视频为条件。机械臂从铺着白布的桌面上拿起黑色记号笔，放入绿色熊猫造型的笔筒中。动作平稳且有条不紊，不接触附近的深色瓶子。"
+  },
+  "c2v-004": {
+    "en": "edge video condition. A dual-arm robot approaches a beige curtain and uses both grippers to untie the fabric tieback. It then pulls the curtain sideways to open it before releasing and retracting.",
+    "zh": "以边缘视频为条件。双臂机器人靠近米色窗帘，用两侧夹爪解开布质束带，再将窗帘向侧面拉开，随后松开夹爪并收回机械臂。"
+  },
+  "c2v-009": {
+    "en": "segmentation video condition. The robot arm moves toward a white coffee dispenser, grasps a black cup from the table, lifts it, positions it beneath the dispenser, and fills it with dark coffee before withdrawing it.",
+    "zh": "以分割视频为条件。机械臂移向白色咖啡机，从桌上抓起黑色杯子并提起，将杯子放到出液口下方，接满深色咖啡后移开。"
+  },
+  "c2v-005": {
+    "en": "depth video condition. A dual-arm robot operates in a room with wooden tables. The right arm grasps and rotates a black circular handle on a floor device while the left arm stays still.",
+    "zh": "以深度视频为条件。双臂机器人在摆有木桌的房间内操作。右臂抓住并转动地面设备上的黑色圆形把手，左臂保持不动。"
+  },
+  "c2v-013": {
+    "en": "depth video condition. The robot arm grasps a water bottle, lifts it smoothly, and pours water into an empty yellow plastic cup before returning the bottle to its original position. It then moves toward a black metal mug and picks up the now-filled yellow cup.",
+    "zh": "以深度视频为条件。机械臂抓住水瓶，平稳地提起，将水倒入空的黄色塑料杯，再把水瓶放回原位。随后，机械臂移向黑色金属马克杯，并拿起已装有水的黄色杯子。"
+  },
+  "v2c-008": {
+    "en": "predict edge. open microwave oven",
+    "zh": "预测边缘。打开微波炉门。"
+  },
+  "v2c-003": {
+    "en": "predict segmentation. hang tool",
+    "zh": "预测分割。挂起工具。"
+  },
+  "v2c-010": {
+    "en": "predict depth. organize kitchen utensils",
+    "zh": "预测深度。整理厨具。"
+  },
+  "v2c-017": {
+    "en": "predict edge. pick billards color",
+    "zh": "预测边缘。按颜色选取台球。"
+  },
+  "v2c-023": {
+    "en": "predict segmentation. pick block color",
+    "zh": "预测分割。按颜色选取积木。"
+  },
+  "v2c-004": {
+    "en": "predict depth. merge workpieces",
+    "zh": "预测深度。将工件合在一起。"
+  }
+}

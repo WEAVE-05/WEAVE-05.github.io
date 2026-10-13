@@ -1,901 +1,164 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href=".\img\20260916-154816.png" type="image/x-icon">
-    <title>WEAVE-0.5</title>
-    <style>
-        /* ====== 从VLA-Trace复制的导航栏全局变量+导航样式 ====== */
-        :root {
-          --bg: #f7faff;
-          --paper: rgba(255,255,255,.92);
-          --paper2: #ffffff;
-          --ink: #0f172a;
-          --muted: #5b6477;
-          --soft: #e8eefc;
-          --line: #dbe4f4;
-          --blue: #2f55d4;
-          --blue2: #6b7cff;
-          --cyan: #0ea5b7;
-          --orange: #f97316;
-          --green: #16a34a;
-          --purple: #7c3aed;
-          --red: #ef4444;
-          --shadow: 0 24px 70px rgba(15, 23, 42, .11);
-          --radius: 24px;
-          --max: 1360px;
-        }
-        .nav {
-          position: sticky; top: 0; z-index: 50;
-          backdrop-filter: blur(18px);
-          background: rgba(248,251,255,.82);
-          border-bottom: 1px solid rgba(219,228,244,.85);
-        }
-        .nav-inner {
-          max-width: var(--max); margin: 0 auto; padding: 14px 20px;
-          display: flex; justify-content: space-between; align-items: center; gap: 14px;
-        }
-        .brand { 
-            display:flex; 
-            align-items:center; 
-            gap:10px; 
-            font-weight: 900; 
-            letter-spacing: -.02em;
-            text-decoration: none; /* 移除品牌标题a标签下划线 */
-            color: var(--ink);
-        }
-        .brand-dot { width: 34px; height: 34px; border-radius: 12px; background: linear-gradient(135deg,var(--blue),var(--cyan)); box-shadow: 0 12px 30px rgba(47,85,212,.28); }
-        .nav-links { display:flex; gap:18px; align-items:center; color: #000 !important; font-size:20px; font-weight:700; }
-        .nav-links a {
-        text-decoration: none; /* 新增：移除下划线 */
-        color: inherit;
-        }
-        .nav-links a:hover { color: var(--blue); }
-
-        /* 限制导航栏品牌 Logo 尺寸 */
-        .brand-logo {
-          height: 50px;    /* 控制高度，按需微调 24~32px */
-          width: auto;     /* 宽度自适应，保证不变形 */
-          object-fit: contain;
-          display: block;
-        }
-        @media (max-width: 980px) {
-          .nav-links { display: none; }
-        }
-        /* ====== 下面是你原有的EPIC-Bench全部样式，保持不变 ====== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        }
-        /* 作者弹窗动画 */
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes slideUp {
-            from {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateY(-8px);
-            }
-        }
-        .authors.show {
-            display: block !important;
-            animation: slideDown 0.3s ease forwards;
-        }
-        .authors.hide {
-            animation: slideUp 0.3s ease forwards;
-        }
-        body {
-            background-color: #fff;
-            background-image: none;
-            background-position: 0 0;
-            background-size: auto;
-            background-repeat: repeat;
-            padding-top: 0;
-            margin: 0;
-            min-height: 100vh;
-        }
-        .rynn-header {
-            width: 100%;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 30px;
-        }
-        .logo-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #a855f7, #ec4899);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 32px;
-        }
-        .logo-image {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            max-width: 200px;
-        }
-        .logo-text {
-            font-size: 36px;
-            font-weight: 700;
-            background: linear-gradient(90deg, #a855f7, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .title {
-            font-size: clamp(24px, 4vw, 44px);
-            font-weight: 400;
-            color: #000;
-            line-height: 1.2;
-            margin-bottom: 30px;
-        }
-        .title span {
-            color: #000;
-        }
-        .authors {
-            max-width: 1200px;
-            margin: 12px auto 14px;
-            color: #2f9ab7;
-            font-size: 16px;
-            line-height: 2.1;
-            text-align: center;
-        }
-        .authors sup {
-            font-size: 0.9em !important;
-            color: #000000;
-            position: relative;
-            top: -3px;
-            left: -1px;
-        }
-        .author-affiliations {
-            font-size: 16px;
-            color: #000;
-            margin-top: 10px;
-            margin-bottom: 4px;
-            font-weight: 500;
-            line-height: 1.1;
-        }
-        .author-affiliations sup {
-            font-size: 0.85em !important;
-            top: -4px;
-            left: 0;
-        }
-        .author-notes {
-            font-size: 16px;
-            color: #000000;
-            margin-top: 10px;
-            margin-bottom: 12px;
-            font-weight: 500;
-        }
-        .author-name {
-            font-size: 20px;
-            font-weight: 500;
-            display: inline-block;
-            margin: 0 3px;
-            position: relative;
-        }
-        .button-group {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-        }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            color: #1e293b;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        .quick-jump-btn {
-            padding: 10px 24px;
-            border-radius: 8px;
-            border: 1px solid #1e40af;
-            background: #1e40af;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            margin: 0 8px;
-            transition: all 0.2s ease;
-        }
-        .quick-jump-btn:hover {
-            background: #1e3a8a;
-            border-color: #1e3a8a;
-        }
-        .btn:hover {
-            background: #f8fafc;
-            border-color: #cbd5e1;
-        }
-        .btn svg {
-            width: 20px;
-            height: 20px;
-        }
-        .epic-wrapper {
-            display: inline-block;
-            letter-spacing: -1px;
-            white-space: nowrap;
-        }
-        .epic-letter {
-            display: inline-block;
-            background: linear-gradient(90deg, #ef4444, #fbbf24, #3b82f6, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: bounce 1.5s ease-in-out infinite;
-            margin: 0;
-            padding: 0;
-        }
-        .epic-letter:nth-child(1) { animation-delay: 0s; }
-        .epic-letter:nth-child(2) { animation-delay: 0.15s; }
-        .epic-letter:nth-child(3) { animation-delay: 0.3s; }
-        .epic-letter:nth-child(4) { animation-delay: 0.45s; }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        .abstract-section {
-            max-width: 1200px;
-            margin: -40px auto 40px;
-            padding: 0 20px;
-        }
-        .abstract-title {
-            font-size: 36px;
-            font-weight: 700;
-            color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .abstract-card {
-            background: #f8f8f8;;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .abstract-text {
-            color: #222;
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 12px;
-        }
-        .key-highlights {
-            margin-top: 24px;
-        }
-        .key-highlights h3 {
-            font-size: 20px;
-            font-weight: 600;
-            color: #222;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .key-highlights ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        .key-highlights li {
-            margin-bottom: 16px;
-            color: #222;
-            line-height: 1.6;
-        }
-        .key-highlights li strong {
-            color: #222;
-            display: block;
-            margin-bottom: 4px;
-        }
-        .overview-section {
-            max-width: 1200px;
-            margin: 0 auto 60px;
-            padding: 0 20px;
-            text-align: center;
-        }
-        .overview-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: #333;
-            text-align: center;
-            margin-bottom: 24px;
-        }
-        .overview-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        .overview-card {
-            background: #ffffff;
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-        .overview-card h3 {
-            font-size: 18px;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .overview-card h3::before {
-            content: "🧠";
-        }
-        .overview-card.location h3::before {
-            content: "📍";
-        }
-        .overview-item {
-            margin-bottom: 16px;
-            padding: 12px;
-            background: #f8fafc;
-            border-radius: 8px;
-        }
-        .overview-item .question {
-            font-size: 14px;
-            color: #475569;
-            margin-bottom: 8px;
-        }
-        .overview-item .answer {
-            font-size: 14px;
-            color: #1e293b;
-            font-weight: 500;
-        }
-        .overview-images {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-        .overview-images img {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 8px;
-            background: #e2e8f0;
-        }
-        #sticky-nav-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        #sticky-nav-clone {
-            display: none !important;
-            position: static !important;
-            top: auto !important;
-            left: auto !important;
-            right: auto !important;
-            z-index: 1 !important;
-            background: none !important;
-            padding: 0 !important;
-            box-shadow: none !important;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .sortable-header {
-            cursor: pointer;
-            user-select: none;
-            position: relative;
-            padding-right: 20px !important;
-        }
-        .sortable-header:hover {
-            background-color: #e2e8f0;
-        }
-        .sort-indicator {
-            position: absolute;
-            right: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 12px;
-            color: #64748b;
-        }
-        .rank-number {
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background-color: #e2e8f0;
-            color: #1e293b;
-            text-align: center;
-            line-height: 24px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-right: 8px;
-        }
-        .medal-icon {
-            margin-right: 8px;
-            font-size: 16px;
-        }
-        .data-table-container {
-            background: white;
-            max-width: 98% !important;
-            width: 98% !important;
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            overflow-x: auto;
-            max-height: 800px;
-            overflow-y: auto;
-            scrollbar-width: thin;
-        }
-        #data-table td:first-child,
-        #data-table th:first-child {
-            position: sticky;
-            left: 0;
-            z-index: 30;
-            min-width: 10px;
-            width: 10px;
-            text-align: left !important;
-            padding-left: 16px !important;
-        }
-        #data-table th:not(:first-child),
-        #data-table td:not(:first-child) {
-            width: 50px !important;
-            min-width: 50px !important;
-            max-width: 50px !important;
-            text-align: center !important;
-        }
-        #data-table th:not(:first-child),
-        #data-table td:not(:first-child) {
-            word-wrap: break-word !important;
-            white-space: normal !important;
-            overflow-wrap: break-word !important;
-            vertical-align: middle !important;
-        }
-        #data-table th:first-child {
-            text-align: center !important;
-            padding-left: 0 !important;
-        }
-        #sticky-nav-wrapper-benchmark {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin: 20px 0;
-        }
-        #data-table tbody tr td:first-child {
-            background-color: #fff !important;
-        }
-        #data-table tbody tr:nth-child(even) td:first-child {
-            background-color: #f8fafc !important;
-        }
-        #data-table tbody tr:nth-child(1) td:first-child {
-            background-color: #fff8e6 !important;
-        }
-        #data-table tbody tr:nth-child(2) td:first-child {
-            background-color: #f5f5f5 !important;
-        }
-        #data-table tbody tr:nth-child(3) td:first-child {
-            background-color: #fff3e0 !important;
-        }
-        .data-table-container::-webkit-scrollbar {
-            width: 8px;
-        }
-        .data-table-container::-webkit-scrollbar-track {
-            background: #f1f5f9;
-            border-radius: 4px;
-        }
-        .data-table-container::-webkit-scrollbar-thumb {
-            background: #94a3b8;
-            border-radius: 4px;
-        }
-        .data-table-container::-webkit-scrollbar-thumb:hover {
-            background: #64748b;
-        }
-        /* 顶部按钮组样式 */
-        #top-button-group {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 14px;
-        }
-        #top-button-group .btn,
-        #top-button-group .quick-jump-btn {
-            /* width: 180px !important; 删掉固定宽度 */
-            min-width: 140px !important; /* 设置最小宽度，防止按钮过小 */
-            height: 42px !important;
-            padding: 0 20px !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            box-sizing: border-box !important;
-            margin: 0 !important;
-            font-size:16px !important;
-            white-space: nowrap; /* 禁止文字换行，关键！ */
-        }
-
-        #top-button-group .quick-jump-btn span {
-            margin-left: 6px !important;
-        }
-        .data-table-container {
-            position: relative;
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 0;
-        }
-        #data-table th {
-            font-size: 13px !important;
-        }
-        #data-table td {
-            font-size: 13px !important;
-        }
-        .data-table-container thead tr:nth-child(1) {
-            position: sticky;
-            top: 0;
-            z-index: 38;
-            background: #f1f5f9 !important;
-            box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1);
-            height: 48px;
-            padding: 0;
-        }
-        .data-table-container thead tr:nth-child(2) {
-            position: sticky;
-            top: 48px;
-            z-index: 38;
-            background: #f1f5f9 !important;
-            box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1);
-            height: 48px;
-            padding: 0;
-        }
-        .data-table-container th {
-            padding: 12px !important;
-            height: 48px !important;
-            line-height: 1.2 !important;
-            box-sizing: border-box !important;
-        }
-        .module-epic thead tr:first-child th:nth-child(3) {
-            border-left: 2px solid #e2e8f0 !important;
-        }
-        .module-epic thead tr:nth-child(2) th:nth-child(3) {
-            border-left: 2px solid #e2e8f0 !important;
-        }
-        .module-epic thead th {
-            background: #f1f5f9 !important;
-            position: relative;
-            z-index: 10;
-        }
-        #data-table tbody tr {
-            background: #fff !important;
-        }
-        #data-table tbody tr:nth-child(even) {
-            background: #f8fafc !important;
-        }
-        #data-table tbody tr:nth-child(1) {
-            background: #fff8e6 !important;
-        }
-        #data-table tbody tr:nth-child(2) {
-            background: #f5f5f5 !important;
-        }
-        #data-table tbody tr:nth-child(3) {
-            background: #fff3e0 !important;
-        }
-        .module-target #data-table th {
-            background: #f1f5f9 !important;
-            border-bottom: 2px solid #e2e8f0 !important;
-            border-right: 1px solid #e2e8f0 !important;
-            position: sticky !important;
-            z-index: 50 !important;
-        }
-        .module-target #data-table th:first-child {
-            border-right: 2px solid #e2e8f0 !important;
-        }
-        .module-target thead tr:nth-child(2) th:nth-child(2),
-        .module-target thead tr:nth-child(2) th:nth-child(9),
-        .module-target thead tr:nth-child(2) th:nth-child(14) {
-            border-right: 2px solid #e2e8f0 !important;
-        }
-        .module-target #data-table tbody td {
-            background: #fff !important;
-        }
-        .module-target #data-table tbody tr:nth-child(even) td {
-            background: #f8fafc !important;
-        }
-        .module-target #data-table tbody tr:nth-child(1) td {
-            background: #fff8e6 !important;
-        }
-        .module-target #data-table tbody tr:nth-child(2) td {
-            background: #f5f5f5 !important;
-        }
-        .module-target #data-table tbody tr:nth-child(3) td {
-            background: #fff3e0 !important;
-        }
-        #data-table th:first-child {
-            background: #f1f5f9 !important;
-            position: sticky !important;
-            left: 0 !important;
-            z-index: 50 !important;
-        }
-        .module-target #data-table tbody td:first-child {
-            background: #fff !important;
-            z-index: 45 !important;
-        }
-        .module-target #data-table tbody tr:nth-child(even) td:first-child {
-            background: #f8fafc !important;
-        }
-        .module-target #data-table tbody tr:nth-child(1) td:first-child {
-            background: #fff8e6 !important;
-        }
-        .module-target #data-table tbody tr:nth-child(2) td:first-child {
-            background: #f5f5f5 !important;
-        }
-        .module-target #data-table tbody tr:nth-child(3) td:first-child {
-            background: #fff3e0 !important;
-        }
-        .module-nav thead tr:nth-child(1) th:nth-child(2),
-        .module-manip thead tr:nth-child(1) th:nth-child(2),
-        .module-nav thead tr:nth-child(2) th:nth-child(2),
-        .module-manip thead tr:nth-child(2) th:nth-child(2) {
-            border-right: 2px solid #e2e8f0 !important;
-        }
-        .nav-connector {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            margin: -10px 0;
-            position: relative;
-        }
-        .vertical-line-top {
-            width: 2px;
-            height: 25px;
-            background-color: #cbd5e1;
-            position: relative;
-        }
-        .vertical-line-top::before {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 8px;
-            height: 8px;
-            background-color: #cbd5e1;
-            border-radius: 50%;
-        }
-        .subtasks-badge {
-            padding: 2px 12px;
-            background: #e9f7fd;
-            color:#1e40af;
-            border: 1px solid #e2e8f0;
-            border-radius: 20px;
-            font-size: 12px;
-            z-index: 2;
-            margin: -13px 0;
-        }
-        .tree-fork {
-            width: 450px;
-            height: 15px;
-            position: relative;
-        }
-        .horizontal-bar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background-color: #cbd5e1;
-        }
-        .branch {
-            position: absolute;
-            top: 0;
-            width: 2px;
-            height: 25px;
-            background-color: #cbd5e1;
-        }
-        .branch::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 8px;
-            height: 8px;
-            background-color: #cbd5e1;
-            border-radius: 50%;
-        }
-        .branch.left {
-            left: 0;
-        }
-        .branch.middle {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        .branch.right {
-            right: 0;
-        }
-        .nav-row-bottom {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-        }
-        .leaderboard-btn {
-            padding: 14px 32px;
-            font-size: 20px;
-            font-weight: 700;
-            background: white;
-            border: 2px solid #e2e8f0;
-            border-radius: 50px;
-            color: #1e293b;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        /* 折叠式左侧悬浮目录 */
-        .side-nav-collapsed {
-            position: fixed;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-        }
-        .side-nav-toggle {
-            width: 32px;
-            height: 60px;
-            background: rgba(255, 242, 226, 0.9);
-            border: 1px solid #e2e8f0;
-            border-left: none;
-            border-radius: 0 8px 8px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            color: #64748b;
-            cursor: pointer;
-            box-shadow: 2px 0 6px rgba(0,0,0,0.05);
-            transition: all 0.25s ease;
-        }
-        .side-nav-content {
-            width: 220px;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(8px);
-            padding: 18px;
-            border-radius: 0 12px 12px 0;
-            border: 1px solid #e2e8f0;
-            border-left: none;
-            box-shadow: 2px 0 12px rgba(0,0,0,0.08);
-            margin-left: -100%;
-            opacity: 0;
-            pointer-events: none;
-            transition: 
-                margin-left 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
-                opacity 0.2s ease;
-        }
-        .side-nav-toggle:hover + .side-nav-content,
-        .side-nav-content:hover {
-            margin-left: 0;
-            opacity: 1;
-            pointer-events: all;
-        }
-        .side-nav-toggle:hover {
-            color: #22c55e;
-            font-size: 0;
-        }
-        .side-nav-toggle:hover::after {
-            content: "←";
-            font-size: 16px;
-        }
-        .side-nav-content ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .side-nav-content li {
-            margin-bottom: 11px;
-        }
-        .side-nav-content a {
-            text-decoration: none;
-            color: #475569;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.2s;
-            display: block;
-            line-height: 1.4;
-        }
-        .side-nav-content a:hover {
-            color: #22c55e;
-            transform: translateX(4px);
-        }
-        @media (max-width: 1200px) {
-            .side-nav-collapsed {
-                display: none;
-            }
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="WEAVE-0.5: Weaving Multi-stream Observations into Embodied World Models. Explore multi-view RGB, depth, edge, and segmentation video results.">
+  <meta name="theme-color" content="#122f50">
+  <title>WEAVE-0.5 | Multi-stream Embodied World Models</title>
+  <link rel="icon" href="img/20260916-154816.png" type="image/png">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/locale-zh.js" defer></script>
+  <script src="assets/i18n.js" defer></script>
+  <script src="assets/gallery.js" defer></script>
 </head>
 <body>
-    <!-- ========== 从VLA-Trace完整移植过来的导航栏HTML ========== -->
-    <nav class="nav">
-        <div class="nav-inner">
-        <a class="brand" href="#top">
-          <img src="./img/20260916-154816.png" alt="logo" class="brand-logo">
-          <span>WEAVE-0.5</span>
-        </a>
-        <div class="nav-links">
-        <a href="#overview">Overview</a>
-        </div>
-        </div>
+  <a class="skip-link" href="#overview">Skip to project overview</a>
+  <header class="site-header">
+    <nav class="navigation container" aria-label="Main navigation">
+      <a class="wordmark original-brand" href="#top" aria-label="WEAVE-0.5 home"><img src="img/20260916-154816.png" width="44" height="44" alt="">WEAVE-0.5</a>
+      <div class="nav-actions"><div class="nav-links"><a href="#overview">Overview</a><a href="#method">Method</a><a href="#demos">Video results</a><a href="#resources">Resources <span aria-hidden="true">↗</span></a></div><div class="language-switch" role="group" aria-label="Website language"><button type="button" data-set-language="en" data-no-translate lang="en" aria-label="Read in English" aria-pressed="true">EN</button><button type="button" data-set-language="zh" data-no-translate lang="zh-CN" aria-label="切换为中文" aria-pressed="false">中文</button></div></div>
     </nav>
-    <main id="top">
-    <!-- 折叠式左侧悬浮目录 -->
-    <!-- <nav class="side-nav-collapsed">
-        <div class="side-nav-toggle">→</div>
-        <div class="side-nav-content">
-        <ul>
-            <li><a href="#overview">Overview</a></li>
-        </ul>
-        </div>
-    </nav> -->
-    <header class="rynn-header">
-        <h1 id="epic-title" class="title">
-            <span class="epic-wrapper"><span class="epic-letter">W</span><span class="epic-letter">E</span><span class="epic-letter">A</span><span class="epic-letter">V</span><span class="epic-letter">E</span><span class="epic-letter">-</span><span class="epic-letter">0</span><span class="epic-letter">.</span><span class="epic-letter">5</span><span class="epic-letter">:</span>  Weaving Multi-stream Observations into Embodied World Models</span>
-        </h1>
-        <div class="authors">
-            Beijing Innovation Center of Humanoid Robotics (X-Humanoid)<br> WFM System Group
-        </div>
-        <div id="top-button-group" class="button-group">
-            <a href="" target="_blank" rel="noopener noreferrer" class="btn" style="background: #000000; color: #ffffff; border-color: #000000;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                GitHub(coming soon)
-            </a>
-            <a href="" target="_blank" rel="noopener noreferrer" class="btn" style="background: #ef4444; color: #ffffff; border-color: #ef4444;">
-                <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
-                    <path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"></path>
-                </svg>
-                Report(coming soon)
-            </a>
-            <a href="" target="_blank" rel="noopener noreferrer" class="btn" style="background: #fbbf24; color: #ffffff; border-color: #fbbf24;">
-                <span style="font-size: 18px;">🤗</span>Huggingface(coming soon)
-            </a>
-        </div>
-    </header>
-    <!-- ====================== Overview 模块 ====================== -->
-    <section id="overview" class="overview-section">
-        <h2 class="overview-title">Overview</h2>
-        <div style="text-align: center; margin-bottom: 24px;">
-            <img src="img\20260917-103318.png" 
-                style="max-width: 100%; height: auto; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
-                alt="Overview">
-        </div>
-        <p style="text-align:center; font-size:28px; font-weight:600; color:#333; margin-top:32px;">
-           Additional sections are currently under development.
-        </p>
+  </header>
+  <main id="top">
+    <section class="hero original-hero container" aria-labelledby="project-title">
+      <h1 id="project-title"><span class="sr-only">WEAVE-0.5: </span><span class="animated-name" aria-hidden="true"><span>W</span><span>E</span><span>A</span><span>V</span><span>E</span><span>-</span><span>0</span><span>.</span><span>5</span><span>:</span></span> Weaving Multi-stream Observations into Embodied World Models</h1>
+      <p class="affiliation">Beijing Innovation Center of Humanoid Robotics <span class="affiliation-short">(X-Humanoid)</span><br><span class="group-name">WFM System Group</span></p>
+      <div class="hero-resources" aria-label="Research resources">
+        <span class="resource-pill github-pill">GitHub <small>(coming soon)</small></span>
+        <span class="resource-pill report-pill"><span aria-hidden="true">▤</span> Report <small>(coming soon)</small></span>
+        <span class="resource-pill hf-pill"><span aria-hidden="true">🤗</span> Hugging Face <small>(coming soon)</small></span>
+      </div>
     </section>
-    </main>
+    <section id="overview" class="overview-section container" aria-labelledby="overview-heading">
+      <div class="section-heading"><div><h2 id="overview-heading">Overview</h2></div><a class="text-link" href="img/20260917-103318.png" target="_blank" rel="noopener">View full figure <span aria-hidden="true">↗</span></a></div>
+      <figure class="overview-figure"><img src="img/20260917-103318.png" alt="WEAVE-0.5 project overview showing data sources, the multi-stream task formulation, and model capabilities." width="1954" height="1280" fetchpriority="high"><figcaption>WEAVE-0.5 project overview.</figcaption></figure>
+    </section>
+    <section id="method" class="method-section container" aria-labelledby="method-heading">
+      <div class="section-heading"><div><p class="eyebrow">How it works</p><h2 id="method-heading">One shared model, configurable visual streams.</h2></div><a class="text-link" href="assets/paper/framework.pdf" target="_blank" rel="noopener">Original vector figure <span aria-hidden="true">↗</span></a></div>
+      <p class="method-summary">WEAVE-0.5 represents each viewpoint and visual modality as an independently encoded stream at its native resolution. Stream tokens are packed into a shared sequence, allowing language and visual observations to condition generation through one video diffusion backbone.</p>
+      <figure class="method-figure"><img src="assets/paper/framework.png" width="2400" height="1335" loading="lazy" decoding="async" alt="WEAVE-0.5 framework: independent visual encoding, view and modality embeddings, virtual-canvas positions, framewise observation and target roles, and a shared diffusion transformer."><figcaption>Framework from the paper. Observed content remains fixed while target latents are denoised and decoded into their respective streams.</figcaption></figure>
+      <div class="method-principles">
+        <div><span class="principle-number">01</span><h3>Independent streams</h3><p>RGB, depth, edges, and segmentation share a visual encoder while retaining their own viewpoints and resolutions.</p></div>
+        <div><span class="principle-number">02</span><h3>A shared virtual canvas</h3><p>Spatial offsets separate views. Aligned modalities share an origin with resolution-dependent strides, retaining the pretrained 3D RoPE structure.</p></div>
+        <div><span class="principle-number">03</span><h3>Flexible prediction roles</h3><p>Framewise timesteps distinguish observations from targets. Changing these roles expresses future prediction, view completion, modality prediction, and modality-conditioned generation.</p></div>
+      </div>
+    </section>
+    <section id="capabilities" class="capability-section container" aria-labelledby="capability-heading">
+      <div class="section-heading"><div><p class="eyebrow">Capability coverage</p><h2 id="capability-heading">A flexible visual interface.</h2></div></div>
+      <p class="capability-intro">Reported visual capabilities of selected embodied world models, reproduced from the paper. This comparison describes capability coverage, not benchmark performance.</p>
+      <div class="matrix-scroll" role="region" aria-label="Capability comparison table; scroll horizontally on small screens" tabindex="0">
+        <table class="capability-matrix">
+          <caption class="sr-only">Reported visual capability coverage of selected embodied world models</caption>
+          <thead><tr><th scope="col">Visual capability</th><th scope="col">Cosmos 3</th><th scope="col">LingBot-Video</th><th scope="col">Ctrl-World</th><th scope="col">DreamX-Phi</th><th scope="col">RoboTransfer</th><th scope="col" class="ours">WEAVE-0.5</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Single-view generation</th><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td class="ours">✓</td></tr>
+            <tr><th scope="row">Multi-view generation</th><td>✓</td><td>×</td><td>✓</td><td>○</td><td>✓</td><td class="ours">✓</td></tr>
+            <tr><th scope="row">Variable view count</th><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td class="ours">✓</td></tr>
+            <tr><th scope="row">Cross-view completion</th><td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td class="ours">✓</td></tr>
+            <tr class="matrix-divider"><th scope="row">Modality prediction <span>RGB → modality</span></th><td>×</td><td>×</td><td>×</td><td>○</td><td>×</td><td class="ours">✓</td></tr>
+            <tr><th scope="row">Modality-conditioned generation <span>Modality → RGB</span></th><td>✓</td><td>×</td><td>×</td><td>×</td><td>✓</td><td class="ours">✓</td></tr>
+            <tr><th scope="row">Joint RGB + modality generation</th><td>×</td><td>×</td><td>×</td><td>○</td><td>×</td><td class="ours">✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="matrix-legend"><span>✓ Reported support</span><span>○ Restricted support</span><span>× Not described or demonstrated in the cited work</span></p>
+      <p class="matrix-note">Modalities refer to depth, edges, or segmentation; support for one does not imply support for all three. DreamX-Phi uses an auxiliary depth-prediction branch rather than interchangeable RGB/depth conditioning roles. The comparison is not exhaustive, and an unreported capability does not establish an architectural limitation. As discussed in the paper, MVISTA-4D also supports variable view counts and masked view completion, while OmniView jointly represents observations and targets across views and time.</p>
+      <p class="matrix-sources">Sources: <a href="https://arxiv.org/abs/2606.02800" target="_blank" rel="noopener">Cosmos 3</a>, <a href="https://arxiv.org/abs/2607.07675" target="_blank" rel="noopener">LingBot-Video</a>, <a href="https://ctrl-world.github.io/" target="_blank" rel="noopener">Ctrl-World</a>, <a href="https://arxiv.org/abs/2608.13489" target="_blank" rel="noopener">DreamX-Phi</a>, and <a href="https://openaccess.thecvf.com/content/CVPR2026F/html/Liu_RoboTransfer_Controllable_Geometry-Consistent_Video_Diffusion_for_Manipulation_Policy_Transfer_CVPRF_2026_paper.html" target="_blank" rel="noopener">RoboTransfer</a>.</p>
+    </section>
+    <section id="demos" class="results-section" aria-labelledby="gallery-heading">
+      <div class="container">
+        <div class="section-heading"><div><p class="eyebrow">Explore the results</p><h2 id="gallery-heading">Four ways to weave a scene.</h2></div><p class="section-intro">Selected examples of multi-view video<br>and visual modality generation.</p></div>
+        <nav class="task-jump-links" aria-label="Jump to a video task">
+          <span class="jump-label">On this page</span>
+          <a href="#joint">01 Joint generation</a>
+          <a href="#newview">02 Cross-view completion</a>
+          <a href="#c2v">03 Modality-conditioned</a>
+          <a href="#v2c">04 Modality prediction</a>
+        </nav>
+
+      <section id="joint" class="task-section" data-gallery-task="joint" aria-labelledby="joint-title">
+        <div class="task-intro">
+          <p class="eyebrow"><span class="task-number">01</span> Video results</p>
+          <h3 id="joint-title" data-gallery="demo-title">Joint generation</h3>
+          <p data-gallery="demo-description">RGB views with depth, edges, and segmentation across the same scene.</p>
+          <span class="task-flow">Multi-view RGB + visual modalities</span>
+        </div>
+        <div class="demo-player" data-gallery="demo-player">
+          <div class="player-heading"><span class="scene-label">Explore the scenes</span><div class="case-navigation"><span data-gallery="demo-count" aria-live="polite"></span><button class="icon-button" data-gallery="case-prev" type="button" aria-label="Previous scene">←</button><button class="icon-button" data-gallery="case-next" type="button" aria-label="Next scene">→</button></div></div>
+          <div class="case-meta" data-gallery="case-meta" aria-live="polite" hidden></div>
+          <div class="video-grid" data-gallery="video-grid" aria-label="Video streams"><div class="gallery-loading">Preparing this gallery…</div></div>
+          <div class="playback-bar" role="group" aria-label="Joint generation playback controls"><button data-gallery="play-toggle" type="button" class="play-button" aria-label="Play all videos">Play all</button><button data-gallery="replay" type="button" class="replay-button" aria-label="Replay all videos">Replay</button><input data-gallery="timeline" class="timeline" aria-label="Video timeline" type="range" min="0" max="100" value="0" step="0.01" disabled><span data-gallery="time-label" class="time-label">0:00 / 0:00</span></div>
+          <p class="gallery-status" data-gallery="gallery-status" role="status" aria-live="polite">Select a scene, then press Play all.</p>
+          <div class="prompt-block"><span class="prompt-label">Instruction</span><p data-gallery="demo-prompt"></p></div>
+          <div class="filmstrip-heading"><span>More scenes</span><span class="filmstrip-hint">Select a thumbnail →</span></div>
+          <div class="case-strip" data-gallery="case-strip" aria-label="Joint generation scene selection"></div>
+        </div>
+      </section>
+
+      <section id="newview" class="task-section" data-gallery-task="newview" aria-labelledby="newview-title">
+        <div class="task-intro">
+          <p class="eyebrow"><span class="task-number">02</span> Video results</p>
+          <h3 id="newview-title" data-gallery="demo-title">Cross-view completion</h3>
+          <p data-gallery="demo-description">Generate complementary wrist views conditioned on the observed main-view video.</p>
+          <span class="task-flow">Main view → complementary views</span>
+        </div>
+        <div class="demo-player" data-gallery="demo-player">
+          <div class="player-heading"><span class="scene-label">Explore the scenes</span><div class="case-navigation"><span data-gallery="demo-count" aria-live="polite"></span><button class="icon-button" data-gallery="case-prev" type="button" aria-label="Previous scene">←</button><button class="icon-button" data-gallery="case-next" type="button" aria-label="Next scene">→</button></div></div>
+          <div class="case-meta" data-gallery="case-meta" aria-live="polite" hidden></div>
+          <div class="video-grid" data-gallery="video-grid" aria-label="Video streams"><div class="gallery-loading">Preparing this gallery…</div></div>
+          <div class="playback-bar" role="group" aria-label="Cross-view completion playback controls"><button data-gallery="play-toggle" type="button" class="play-button" aria-label="Play all videos">Play all</button><button data-gallery="replay" type="button" class="replay-button" aria-label="Replay all videos">Replay</button><input data-gallery="timeline" class="timeline" aria-label="Video timeline" type="range" min="0" max="100" value="0" step="0.01" disabled><span data-gallery="time-label" class="time-label">0:00 / 0:00</span></div>
+          <p class="gallery-status" data-gallery="gallery-status" role="status" aria-live="polite">Select a scene, then press Play all.</p>
+          <div class="prompt-block"><span class="prompt-label">Instruction</span><p data-gallery="demo-prompt"></p></div>
+          <div class="filmstrip-heading"><span>More scenes</span><span class="filmstrip-hint">Select a thumbnail →</span></div>
+          <div class="case-strip" data-gallery="case-strip" aria-label="Cross-view completion scene selection"></div>
+        </div>
+      </section>
+
+      <section id="c2v" class="task-section" data-gallery-task="c2v" aria-labelledby="c2v-title">
+        <div class="task-intro">
+          <p class="eyebrow"><span class="task-number">03</span> Video results</p>
+          <h3 id="c2v-title" data-gallery="demo-title">Modality-conditioned generation</h3>
+          <p data-gallery="demo-description">Generate RGB videos conditioned on a depth, edge, or segmentation video.</p>
+          <span class="task-flow">Visual modality → RGB</span>
+        </div>
+        <div class="demo-player" data-gallery="demo-player">
+          <div class="player-heading"><span class="scene-label">Explore the scenes</span><div class="case-navigation"><span data-gallery="demo-count" aria-live="polite"></span><button class="icon-button" data-gallery="case-prev" type="button" aria-label="Previous scene">←</button><button class="icon-button" data-gallery="case-next" type="button" aria-label="Next scene">→</button></div></div>
+          <div class="case-meta" data-gallery="case-meta" aria-live="polite" hidden></div>
+          <div class="video-grid" data-gallery="video-grid" aria-label="Video streams"><div class="gallery-loading">Preparing this gallery…</div></div>
+          <div class="playback-bar" role="group" aria-label="Modality-conditioned generation playback controls"><button data-gallery="play-toggle" type="button" class="play-button" aria-label="Play all videos">Play all</button><button data-gallery="replay" type="button" class="replay-button" aria-label="Replay all videos">Replay</button><input data-gallery="timeline" class="timeline" aria-label="Video timeline" type="range" min="0" max="100" value="0" step="0.01" disabled><span data-gallery="time-label" class="time-label">0:00 / 0:00</span></div>
+          <p class="gallery-status" data-gallery="gallery-status" role="status" aria-live="polite">Select a scene, then press Play all.</p>
+          <div class="prompt-block"><span class="prompt-label">Instruction</span><p data-gallery="demo-prompt"></p></div>
+          <div class="filmstrip-heading"><span>More scenes</span><span class="filmstrip-hint">Select a thumbnail →</span></div>
+          <div class="case-strip" data-gallery="case-strip" aria-label="Modality-conditioned generation scene selection"></div>
+        </div>
+      </section>
+
+      <section id="v2c" class="task-section" data-gallery-task="v2c" aria-labelledby="v2c-title">
+        <div class="task-intro">
+          <p class="eyebrow"><span class="task-number">04</span> Video results</p>
+          <h3 id="v2c-title" data-gallery="demo-title">Visual modality prediction</h3>
+          <p data-gallery="demo-description">Predict depth, edges, or segmentation conditioned on observed RGB videos.</p>
+          <span class="task-flow">RGB → visual modality</span>
+        </div>
+        <div class="demo-player" data-gallery="demo-player">
+          <div class="player-heading"><span class="scene-label">Explore the scenes</span><div class="case-navigation"><span data-gallery="demo-count" aria-live="polite"></span><button class="icon-button" data-gallery="case-prev" type="button" aria-label="Previous scene">←</button><button class="icon-button" data-gallery="case-next" type="button" aria-label="Next scene">→</button></div></div>
+          <div class="case-meta" data-gallery="case-meta" aria-live="polite" hidden></div>
+          <div class="video-grid" data-gallery="video-grid" aria-label="Video streams"><div class="gallery-loading">Preparing this gallery…</div></div>
+          <div class="playback-bar" role="group" aria-label="Visual modality prediction playback controls"><button data-gallery="play-toggle" type="button" class="play-button" aria-label="Play all videos">Play all</button><button data-gallery="replay" type="button" class="replay-button" aria-label="Replay all videos">Replay</button><input data-gallery="timeline" class="timeline" aria-label="Video timeline" type="range" min="0" max="100" value="0" step="0.01" disabled><span data-gallery="time-label" class="time-label">0:00 / 0:00</span></div>
+          <p class="gallery-status" data-gallery="gallery-status" role="status" aria-live="polite">Select a scene, then press Play all.</p>
+          <div class="prompt-block"><span class="prompt-label">Instruction</span><p data-gallery="demo-prompt"></p></div>
+          <div class="filmstrip-heading"><span>More scenes</span><span class="filmstrip-hint">Select a thumbnail →</span></div>
+          <div class="case-strip" data-gallery="case-strip" aria-label="Visual modality prediction scene selection"></div>
+        </div>
+      </section>
+        <noscript><p class="noscript-note">Enable JavaScript to browse the video examples. The project overview and task descriptions remain available.</p></noscript>
+      </div>
+    </section>
+    <section id="resources" class="resource-section" aria-labelledby="resources-heading">
+      <div class="container resource-layout"><div><p class="eyebrow">Research resources</p><h2 id="resources-heading">Continue exploring.</h2><p>Research code, the technical report, and model releases will be linked here when available.</p></div><div class="resource-list"><div class="resource-row" aria-label="Research code, coming soon"><span>Code</span><span class="resource-status">Coming soon</span></div><div class="resource-row" aria-label="Technical report, coming soon"><span>Technical report</span><span class="resource-status">Coming soon</span></div><div class="resource-row" aria-label="Models on Hugging Face, coming soon"><span>Hugging Face</span><span class="resource-status">Coming soon</span></div></div></div>
+    </section>
+  </main>
+  <footer class="container site-footer"><a class="wordmark" href="#top">WEAVE<span class="version">0.5</span></a><p>WFM System Group · X-Humanoid</p><a href="#top">Back to top ↑</a></footer>
 </body>
 </html>
