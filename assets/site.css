@@ -63,6 +63,15 @@ h4.video-label{margin:0}.stream-video{height:auto}.gallery-status.is-error{color
 .matrix-legend{display:flex;flex-wrap:wrap;gap:8px 24px;margin:16px 0 10px;font-size:11px;color:#4e6779}.matrix-note,.matrix-sources{font-size:11px;line-height:1.8;color:var(--muted)}.matrix-sources{margin-top:9px}.matrix-sources a{text-decoration:underline;text-underline-offset:3px}
 @media(max-width:700px){.original-brand{font-size:14px;gap:6px}.original-brand img{width:32px;height:32px}.nav-links{gap:12px;font-size:10px}.original-hero{padding:27px 0}.original-hero h1{font-size:28px;letter-spacing:-.65px;line-height:1.4;margin:12px 0 22px}.original-hero .affiliation,.original-hero .group-name{font-size:12px}.hero-resources{gap:8px;margin-top:18px}.resource-pill{font-size:11px;padding:8px 11px;border-radius:7px}.method-section,.capability-section{padding-bottom:32px}.method-section .section-heading{display:block}.method-section .section-heading .text-link{display:inline-block;margin-top:16px}.method-summary{font-size:12px}.method-figure{padding:7px}.method-figure figcaption{font-size:9px}.method-principles{grid-template-columns:1fr;gap:17px;margin-top:20px}.method-principles h3{font-size:14px}.method-principles p{font-size:11px}.capability-intro{font-size:12px}.matrix-legend,.matrix-note,.matrix-sources{font-size:10px}.case-meta{gap:5px 15px}.case-meta-value{font-size:11px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+/* A compact downstream research link between video results and resources. */
+.downstream-section{padding:48px 0;background:#fff;border-top:1px solid var(--line)}
+.downstream-layout{max-width:1120px;display:grid;grid-template-columns:minmax(230px,.7fr) minmax(0,1fr);gap:48px;align-items:start}
+.downstream-heading h2{font-size:clamp(29px,3vw,38px);font-weight:650;letter-spacing:-1.2px;line-height:1.25;margin:10px 0}
+.downstream-tagline{font-size:13px;line-height:1.7;color:var(--muted)}
+.downstream-details>p{font-size:13px;line-height:1.85;color:#465d70}
+.downstream-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.downstream-links .button{gap:12px;font-size:11px;padding:10px 14px}
+@media(max-width:700px){.downstream-section{padding:32px 0}.downstream-layout{grid-template-columns:1fr;gap:19px}.downstream-heading h2{font-size:29px}.downstream-tagline,.downstream-details>p{font-size:12px}.downstream-links{margin-top:19px;gap:8px}.downstream-links .button{padding:9px 12px;font-size:10px}}
 /* Bilingual controls stay accessible without adding a second page or reloading media. */
 .nav-actions{display:flex;align-items:center;gap:25px;min-width:0}
 .language-switch{display:inline-flex;flex-shrink:0;border:1px solid #d7e0e7;border-radius:7px;padding:3px;gap:2px;background:#f7f9fb}
