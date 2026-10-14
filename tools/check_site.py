@@ -13,9 +13,15 @@ class Page(HTMLParser):
         self.ids = []
         self.refs = []
         self.tasks = []
+        self.header_refs = []
+        self.in_header = False
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
+        if tag == 'header':
+            self.in_header = True
+        if self.in_header and tag == 'a' and 'href' in attrs:
+            self.header_refs.append(attrs['href'])
         if 'id' in attrs:
             self.ids.append(attrs['id'])
         if 'data-gallery-task' in attrs:
@@ -24,6 +30,10 @@ class Page(HTMLParser):
             if key in attrs:
                 self.refs.append(attrs[key])
 
+    def handle_endtag(self, tag):
+        if tag == 'header':
+            self.in_header = False
+
 
 def main():
     page = Page()
@@ -31,7 +41,12 @@ def main():
     page.feed(html)
     assert len(page.ids) == len(set(page.ids)), 'Duplicate HTML IDs'
     assert page.tasks == ['joint', 'newview', 'c2v', 'v2c']
-    assert page.ids.index('overview') < page.ids.index('method') < page.ids.index('demos')
+    assert (page.ids.index('overview') < page.ids.index('dream4act')
+            < page.ids.index('method') < page.ids.index('demos')), 'Incorrect introduction section order'
+    assert '#dream4act' in page.header_refs, 'Missing Dream4ACT header navigation'
+    for link in ('https://dream4act.github.io/', 'https://arxiv.org/abs/2609.40153',
+                 'https://huggingface.co/papers/2609.40153'):
+        assert link in page.refs, f'Missing Dream4ACT link: {link}'
     assert 'role="tab"' not in html and 'role="tabpanel"' not in html
     for ref in page.refs:
         if ref.startswith('#'):

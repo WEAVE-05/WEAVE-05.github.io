@@ -17,31 +17,55 @@
   <header class="site-header">
     <nav class="navigation container" aria-label="Main navigation">
       <a class="wordmark original-brand" href="#top" aria-label="WEAVE-0.5 home"><img src="img/20260916-154816.png" width="44" height="44" alt="">WEAVE-0.5</a>
-      <div class="nav-actions"><div class="nav-links"><a href="#overview">Overview</a><a href="#method">Method</a><a href="#demos">Video results</a><a href="#resources">Resources <span aria-hidden="true">↗</span></a></div><div class="language-switch" role="group" aria-label="Website language"><button type="button" data-set-language="en" data-no-translate lang="en" aria-label="Read in English" aria-pressed="true">EN</button><button type="button" data-set-language="zh" data-no-translate lang="zh-CN" aria-label="切换为中文" aria-pressed="false">中文</button></div></div>
+      <div class="nav-actions"><div class="nav-links"><a href="#overview">Overview</a><a href="#method">Method</a><a href="#demos">Video results</a><a href="#dream4act">Dream4ACT</a></div><div class="language-switch" role="group" aria-label="Website language"><button type="button" data-set-language="en" data-no-translate lang="en" aria-label="Read in English" aria-pressed="true">EN</button><button type="button" data-set-language="zh" data-no-translate lang="zh-CN" aria-label="切换为中文" aria-pressed="false">中文</button></div></div>
     </nav>
   </header>
   <main id="top">
     <section class="hero original-hero container" aria-labelledby="project-title">
       <h1 id="project-title"><span class="sr-only">WEAVE-0.5: </span><span class="animated-name" aria-hidden="true"><span>W</span><span>E</span><span>A</span><span>V</span><span>E</span><span>-</span><span>0</span><span>.</span><span>5</span><span>:</span></span> Weaving Multi-stream Observations into Embodied World Models</h1>
-      <p class="affiliation">Beijing Innovation Center of Humanoid Robotics <span class="affiliation-short">(X-Humanoid)</span><br><span class="group-name">WFM System Group</span></p>
+      <div class="hero-meta"><p class="affiliation">Beijing Innovation Center of Humanoid Robotics <span class="affiliation-short">(X-Humanoid)</span><br><span class="group-name">WFM System Group</span></p>
       <div class="hero-resources" aria-label="Research resources">
         <span class="resource-pill github-pill">GitHub <small>(coming soon)</small></span>
         <span class="resource-pill report-pill"><span aria-hidden="true">▤</span> Report <small>(coming soon)</small></span>
         <span class="resource-pill hf-pill"><span aria-hidden="true">🤗</span> Hugging Face <small>(coming soon)</small></span>
       </div>
+      </div>
     </section>
-    <section id="overview" class="overview-section container" aria-labelledby="overview-heading">
+    <div class="overview-band"><div class="overview-layout container">
+    <section id="overview" class="overview-section" aria-labelledby="overview-heading">
       <div class="section-heading"><div><h2 id="overview-heading">Overview</h2></div><a class="text-link" href="img/20260917-103318.png" target="_blank" rel="noopener">View full figure <span aria-hidden="true">↗</span></a></div>
       <figure class="overview-figure"><img src="img/20260917-103318.png" alt="WEAVE-0.5 project overview showing data sources, the multi-stream task formulation, and model capabilities." width="1954" height="1280" fetchpriority="high"><figcaption>WEAVE-0.5 project overview.</figcaption></figure>
     </section>
+    <section id="dream4act" class="downstream-section" aria-labelledby="dream4act-heading">
+      <div class="downstream-heading">
+        <p class="eyebrow">Downstream application · WAM</p>
+        <h2 id="dream4act-heading">Dream4ACT</h2>
+        <p class="downstream-tagline">From visual prediction to robot action.</p>
+      </div>
+      <p class="downstream-intro">A world action model that brings robot observations and actions into a shared visual interface.</p>
+      <div class="action-view-note"><span class="principle-number">ACTION VIEWS</span><p>Robot joint configurations are rendered from four fixed virtual cameras, then modeled alongside RGB observations.</p></div>
+      <dl class="downstream-tasks">
+        <div><dt>Forward dynamics</dt><dd>Given actions, predict future observations.</dd></div>
+        <div><dt>Inverse dynamics</dt><dd>Given observations, infer actions.</dd></div>
+        <div><dt>Joint generation</dt><dd>Generate future observations and actions together.</dd></div>
+      </dl>
+      <p class="downstream-recovery">A training-free, URDF-constrained recovery step converts predicted action views into joint targets.</p>
+      <div class="downstream-links">
+        <a class="button button-primary" href="https://dream4act.github.io/" target="_blank" rel="noopener noreferrer">Project page <span aria-hidden="true">↗</span></a>
+        <a class="text-link" href="https://arxiv.org/abs/2609.40153" target="_blank" rel="noopener noreferrer">Read the paper <span aria-hidden="true">↗</span></a>
+        <a class="text-link" href="https://huggingface.co/papers/2609.40153" target="_blank" rel="noopener noreferrer">Hugging Face Papers <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+    </div></div>
     <section id="method" class="method-section container" aria-labelledby="method-heading">
       <div class="section-heading"><div><p class="eyebrow">How it works</p><h2 id="method-heading">One shared model, configurable visual streams.</h2></div><a class="text-link" href="assets/paper/framework.pdf" target="_blank" rel="noopener">Original vector figure <span aria-hidden="true">↗</span></a></div>
       <p class="method-summary">WEAVE-0.5 represents each viewpoint and visual modality as an independently encoded stream at its native resolution. Stream tokens are packed into a shared sequence, allowing language and visual observations to condition generation through one video diffusion backbone.</p>
-      <figure class="method-figure"><img src="assets/paper/framework.png" width="2400" height="1335" loading="lazy" decoding="async" alt="WEAVE-0.5 framework: independent visual encoding, view and modality embeddings, virtual-canvas positions, framewise observation and target roles, and a shared diffusion transformer."><figcaption>Framework from the paper. Observed content remains fixed while target latents are denoised and decoded into their respective streams.</figcaption></figure>
+      <div class="method-layout"><figure class="method-figure"><img src="assets/paper/framework.png" width="2400" height="1335" loading="lazy" decoding="async" alt="WEAVE-0.5 framework: independent visual encoding, view and modality embeddings, virtual-canvas positions, framewise observation and target roles, and a shared diffusion transformer."><figcaption>Framework from the paper. Observed content remains fixed while target latents are denoised and decoded into their respective streams.</figcaption></figure>
       <div class="method-principles">
         <div><span class="principle-number">01</span><h3>Independent streams</h3><p>RGB, depth, edges, and segmentation share a visual encoder while retaining their own viewpoints and resolutions.</p></div>
         <div><span class="principle-number">02</span><h3>A shared virtual canvas</h3><p>Spatial offsets separate views. Aligned modalities share an origin with resolution-dependent strides, retaining the pretrained 3D RoPE structure.</p></div>
         <div><span class="principle-number">03</span><h3>Flexible prediction roles</h3><p>Framewise timesteps distinguish observations from targets. Changing these roles expresses future prediction, view completion, modality prediction, and modality-conditioned generation.</p></div>
+      </div>
       </div>
     </section>
     <section id="capabilities" class="capability-section container" aria-labelledby="capability-heading">
@@ -153,23 +177,6 @@
         </div>
       </section>
         <noscript><p class="noscript-note">Enable JavaScript to browse the video examples. The project overview and task descriptions remain available.</p></noscript>
-      </div>
-    </section>
-    <section id="dream4act" class="downstream-section" aria-labelledby="dream4act-heading">
-      <div class="container downstream-layout">
-        <div class="downstream-heading">
-          <p class="eyebrow">Downstream application · World action model</p>
-          <h2 id="dream4act-heading">Dream4ACT</h2>
-          <p class="downstream-tagline">From visual prediction to robot action.</p>
-        </div>
-        <div class="downstream-details">
-          <p>Dream4ACT renders robot joint configurations as action views from four fixed virtual cameras and models them alongside RGB observations. This shared visual interface supports predicting videos from actions, inferring actions from videos, and jointly generating videos and actions across robot embodiments.</p>
-          <div class="downstream-links">
-            <a class="button button-primary" href="https://dream4act.github.io/" target="_blank" rel="noopener noreferrer">Project page <span aria-hidden="true">↗</span></a>
-            <a class="button button-secondary" href="https://arxiv.org/abs/2609.40153" target="_blank" rel="noopener noreferrer">Read the paper <span aria-hidden="true">↗</span></a>
-            <a class="button button-secondary" href="https://huggingface.co/papers/2609.40153" target="_blank" rel="noopener noreferrer">Hugging Face Papers <span aria-hidden="true">↗</span></a>
-          </div>
-        </div>
       </div>
     </section>
     <section id="resources" class="resource-section" aria-labelledby="resources-heading">
