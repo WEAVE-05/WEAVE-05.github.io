@@ -95,6 +95,9 @@ body{background:#f8fafb}
 .hero-meta{display:flex;justify-content:space-between;align-items:center;gap:20px 32px;flex-wrap:wrap}
 .original-hero .affiliation{font-size:13px;line-height:1.8}.original-hero .group-name{font-size:13px}
 .hero-resources{justify-content:flex-start;margin-top:0}.resource-pill{font-size:12px;padding:9px 15px}
+.benchmark-highlight{display:flex;align-items:center;flex-wrap:wrap;gap:12px 24px;margin-top:26px;padding:16px 20px;border:1px solid #cadfdc;border-left:3px solid #2c7a6c;border-radius:8px;background:#f0f7f5;text-align:left}
+.benchmark-result{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px 18px}.benchmark-result strong{font-size:17px;font-weight:650;color:#185b50}.benchmark-score{font-size:13px;color:#466b63}.benchmark-score b{font-variant-numeric:tabular-nums;color:#185b50}
+.benchmark-context{display:flex;flex-wrap:wrap;gap:7px;font-size:12px;line-height:1.7;color:#526e68}.benchmark-highlight>.text-link{margin-left:auto;font-size:12px;white-space:nowrap}.benchmark-highlight>.text-link span{margin-left:6px}
 .overview-band{background:linear-gradient(110deg,#edf3f7,#f6f8f5);border-block:1px solid #e0e8ed;padding:32px 0 38px}
 .overview-layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:32px;align-items:start}
 .overview-section{padding:0;max-width:none;min-width:0}.overview-section .section-heading{min-height:42px;margin-bottom:17px;align-items:center}
@@ -129,6 +132,7 @@ body{background:#f8fafb}
 @media(max-width:700px){
   .original-hero{padding:26px 0}.original-hero h1{font-size:28px;line-height:1.4;margin-bottom:20px}
   .hero-meta{gap:16px}.original-hero .affiliation,.original-hero .group-name{font-size:12px}.hero-resources{gap:8px}.resource-pill{font-size:11px;padding:8px 10px}
+  .benchmark-highlight{gap:9px;margin-top:22px;padding:14px 16px}.benchmark-result{width:100%;gap:9px 15px}.benchmark-result strong{font-size:16px}.benchmark-context{width:100%;font-size:11px}.benchmark-highlight>.text-link{margin-left:0;font-size:11px}
   .overview-band{padding:24px 0}.overview-layout{gap:22px}.overview-section .section-heading{margin-bottom:14px;gap:8px}.overview-section .overview-figure{padding:6px}
   .downstream-section{display:block;padding:22px}.downstream-intro{margin-top:16px}.action-view-note,.downstream-tasks{margin-top:18px}
   .downstream-tasks>div{padding:10px 0}.downstream-links{margin-top:18px}.downstream-recovery{margin-top:15px}.downstream-links .button{flex-basis:auto}
