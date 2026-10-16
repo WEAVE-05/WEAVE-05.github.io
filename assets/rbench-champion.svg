@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <radialGradient id="medal" cx=".38" cy=".24" r=".8">
+      <stop stop-color="#FFF9DC"/>
+      <stop offset="1" stop-color="#F7E6B0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="41" y1="34" x2="86" y2="92" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE59A"/>
+      <stop offset=".48" stop-color="#EFB944"/>
+      <stop offset="1" stop-color="#C78B20"/>
+    </linearGradient>
+    <linearGradient id="stem" x1="54" y1="75" x2="75" y2="94" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F9D47A"/>
+      <stop offset="1" stop-color="#D4992E"/>
+    </linearGradient>
+    <g id="laurel" fill="#C89A3B">
+      <path d="M47 100C27 92 17 73 23 50" stroke="#BE9032" stroke-width="2" stroke-linecap="round"/>
+      <path d="M23 52C16 48 16 41 19 37C25 41 27 46 23 52ZM21 63C13 61 11 55 12 50C20 51 24 56 21 63ZM23 75C14 75 10 70 10 65C18 64 24 68 23 75ZM28 86C19 89 13 85 12 80C20 77 26 79 28 86ZM37 96C30 102 23 100 20 96C27 90 34 90 37 96ZM23 53C28 47 33 46 37 48C34 55 29 58 23 56ZM22 66C26 58 32 56 37 58C34 66 29 69 22 69ZM26 79C29 70 34 67 39 68C38 76 33 81 27 82ZM33 90C34 82 39 77 44 77C45 85 41 91 36 94Z"/>
+    </g>
+  </defs>
+  <circle cx="64" cy="64" r="58" fill="url(#medal)"/>
+  <circle cx="64" cy="64" r="52" stroke="#DFBB65" stroke-opacity=".42"/>
+  <use href="#laurel"/>
+  <use href="#laurel" transform="translate(128 0) scale(-1 1)"/>
+  <path d="M43 41H32V49C32 61 40 67 49 67M85 41H96V49C96 61 88 67 79 67" stroke="#C89127" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M43 41H33V49C33 58 39 63 46 64M85 41H95V49C95 58 89 63 82 64" stroke="#F5CF72" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M59 72H69V83L78 89H50L59 83V72Z" fill="url(#stem)" stroke="#C88D26" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M41 34H87L84 54C82 68 75 76 64 76C53 76 46 68 44 54L41 34Z" fill="url(#gold)" stroke="#C88D26" stroke-width="1.7" stroke-linejoin="round"/>
+  <path d="M46 39L48 53C50 65 54 69 59 71" stroke="#FFF3BD" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+  <path d="M64 43L67.8 50.7L76.3 51.9L70.1 57.9L71.6 66.4L64 62.4L56.4 66.4L57.9 57.9L51.7 51.9L60.2 50.7L64 43Z" fill="#FFF4C9" stroke="#BE8825" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M48 87H80V94H48V87Z" fill="url(#stem)" stroke="#C88D26" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M45 95H83" stroke="#BA8324" stroke-width="3" stroke-linecap="round"/>
+  <path d="M64 16V24M60 20H68M95 25V31M92 28H98" stroke="#D9AB43" stroke-width="2" stroke-linecap="round"/>
+</svg>

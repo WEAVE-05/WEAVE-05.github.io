@@ -66,16 +66,17 @@ h4.video-label{margin:0}.stream-video{height:auto}.gallery-status.is-error{color
 /* Present the downstream model alongside the opening overview. */
 .downstream-section{padding:26px;background:#fff;border:1px solid #ccdee5;border-top:3px solid #458295;border-radius:10px;min-width:0;align-self:start}
 .downstream-heading h2{font-size:clamp(29px,3vw,38px);font-weight:650;letter-spacing:-1.2px;line-height:1.25;margin:10px 0}
-.downstream-tagline{font-size:13px;line-height:1.7;color:var(--muted)}
-.downstream-intro{font-size:13px;line-height:1.8;color:#465d70;margin-top:18px}
+.downstream-heading .eyebrow{font-size:12px;letter-spacing:.7px;line-height:1.7}
+.downstream-tagline{font-size:16px;line-height:1.7;color:#52697b}
+.downstream-intro{font-size:15px;line-height:1.85;color:#3f586c;margin-top:18px}
 .action-view-note{margin-top:20px;padding:14px 16px;background:#edf5f7;border-left:2px solid #80aebe}
-.action-view-note p{font-size:12px;line-height:1.8;margin-top:5px;color:#3b586c}
+.action-view-note .principle-number{font-size:11px;letter-spacing:1px}.action-view-note p{font-size:14px;line-height:1.85;margin-top:7px;color:#3b586c}
 .downstream-tasks{margin:20px 0 0}.downstream-tasks>div{padding:10px 0;border-bottom:1px solid #e3ebef}.downstream-tasks>div:first-child{padding-top:0}
-.downstream-tasks dt{font-size:12px;font-weight:650}.downstream-tasks dd{margin:3px 0 0;font-size:12px;line-height:1.7;color:var(--muted)}
-.downstream-recovery{font-size:11px;line-height:1.8;color:var(--muted);margin-top:16px}
+.downstream-tasks dt{font-size:15px;font-weight:650}.downstream-tasks dd{margin:4px 0 0;font-size:14px;line-height:1.8;color:#52697b}
+.downstream-recovery{font-size:14px;line-height:1.85;color:#52697b;margin-top:16px}
 .downstream-links{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;margin-top:22px}
-.downstream-links .button{flex-basis:100%;gap:12px;font-size:12px;padding:10px 14px}
-.downstream-links .text-link{font-size:11px}.downstream-links .text-link span{margin-left:5px}
+.downstream-links .button{flex-basis:100%;gap:12px;font-size:14px;padding:11px 16px}
+.downstream-links .text-link{font-size:13px}.downstream-links .text-link span{margin-left:5px}
 /* Bilingual controls stay accessible without adding a second page or reloading media. */
 .nav-actions{display:flex;align-items:center;gap:25px;min-width:0}
 .language-switch{display:inline-flex;flex-shrink:0;border:1px solid #d7e0e7;border-radius:7px;padding:3px;gap:2px;background:#f7f9fb}
@@ -95,11 +96,12 @@ body{background:#f8fafb}
 .hero-meta{display:flex;justify-content:space-between;align-items:center;gap:20px 32px;flex-wrap:wrap}
 .original-hero .affiliation{font-size:13px;line-height:1.8}.original-hero .group-name{font-size:13px}
 .hero-resources{justify-content:flex-start;margin-top:0}.resource-pill{font-size:12px;padding:9px 15px}
-.benchmark-highlight{display:flex;align-items:center;flex-wrap:wrap;gap:12px 24px;margin-top:26px;padding:16px 20px;border:1px solid #cadfdc;border-left:3px solid #2c7a6c;border-radius:8px;background:#f0f7f5;text-align:left}
-.benchmark-result{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px 18px}.benchmark-result strong{font-size:17px;font-weight:650;color:#185b50}.benchmark-score{font-size:13px;color:#466b63}.benchmark-score b{font-variant-numeric:tabular-nums;color:#185b50}
-.benchmark-context{display:flex;flex-wrap:wrap;gap:7px;font-size:12px;line-height:1.7;color:#526e68}.benchmark-highlight>.text-link{margin-left:auto;font-size:12px;white-space:nowrap}.benchmark-highlight>.text-link span{margin-left:6px}
+.benchmark-highlight{display:flex;align-items:center;flex-wrap:wrap;gap:16px 22px;margin-top:26px;padding:16px 24px;border:1px solid #e9d8ad;border-radius:12px;background:linear-gradient(110deg,#fff6df,#fffdf7 58%,#f8f7ef);box-shadow:0 3px 14px #8d661009;text-align:left}
+.benchmark-emblem{width:88px;height:88px;flex:0 0 88px}.benchmark-copy{min-width:0}
+.benchmark-result{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 18px}.benchmark-result strong{font-size:23px;font-weight:700;color:#79500d;letter-spacing:-.25px}.benchmark-score{font-size:14px;color:#766443}.benchmark-score b{font-size:18px;font-variant-numeric:tabular-nums;color:#79500d}
+.benchmark-context{display:flex;flex-wrap:wrap;gap:7px;margin-top:5px;font-size:12px;line-height:1.7;color:#766443}.benchmark-highlight>.text-link{margin-left:auto;font-size:13px;color:#79500d;white-space:nowrap}.benchmark-highlight>.text-link span{margin-left:6px}
 .overview-band{background:linear-gradient(110deg,#edf3f7,#f6f8f5);border-block:1px solid #e0e8ed;padding:32px 0 38px}
-.overview-layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:32px;align-items:start}
+.overview-layout{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:32px;align-items:start}
 .overview-section{padding:0;max-width:none;min-width:0}.overview-section .section-heading{min-height:42px;margin-bottom:17px;align-items:center}
 .overview-section .section-heading h2{margin-top:0}.overview-section .overview-figure{padding:10px}
 .method-section,.capability-section{max-width:var(--max);padding:46px 0}
@@ -132,7 +134,7 @@ body{background:#f8fafb}
 @media(max-width:700px){
   .original-hero{padding:26px 0}.original-hero h1{font-size:28px;line-height:1.4;margin-bottom:20px}
   .hero-meta{gap:16px}.original-hero .affiliation,.original-hero .group-name{font-size:12px}.hero-resources{gap:8px}.resource-pill{font-size:11px;padding:8px 10px}
-  .benchmark-highlight{gap:9px;margin-top:22px;padding:14px 16px}.benchmark-result{width:100%;gap:9px 15px}.benchmark-result strong{font-size:16px}.benchmark-context{width:100%;font-size:11px}.benchmark-highlight>.text-link{margin-left:0;font-size:11px}
+  .benchmark-highlight{display:grid;grid-template-columns:58px minmax(0,1fr);gap:10px 12px;margin-top:22px;padding:16px}.benchmark-emblem{width:58px;height:58px}.benchmark-result{gap:1px 12px}.benchmark-result strong{font-size:19px}.benchmark-score{font-size:12px}.benchmark-score b{font-size:15px}.benchmark-context{gap:3px 6px;font-size:11px}.benchmark-highlight>.text-link{grid-column:2;margin-left:0;font-size:12px;justify-self:start}
   .overview-band{padding:24px 0}.overview-layout{gap:22px}.overview-section .section-heading{margin-bottom:14px;gap:8px}.overview-section .overview-figure{padding:6px}
   .downstream-section{display:block;padding:22px}.downstream-intro{margin-top:16px}.action-view-note,.downstream-tasks{margin-top:18px}
   .downstream-tasks>div{padding:10px 0}.downstream-links{margin-top:18px}.downstream-recovery{margin-top:15px}.downstream-links .button{flex-basis:auto}
